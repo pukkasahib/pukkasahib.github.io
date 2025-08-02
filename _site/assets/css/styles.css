@@ -2,4 +2,21 @@
   color: deepskyblue;
 }
 
+/* eb-garamond-regular - latin */
+@font-face {
+  font-family: "EB Garamond";
+  font-style: normal;
+  font-weight: 400;
+  font-display: auto;
+  src: url('"{{ "/assets  | absolute_url }}/fonts/eb-garamond-v9-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local("EB Garamond Regular"), local("EBGaramond-Regular"), url('"{{ "/assets  | absolute_url }}/fonts/eb-garamond-v9-latin-regular.eot?#iefix') format("embedded-opentype"), url('"{{ "/assets  | absolute_url }}/fonts/eb-garamond-v9-latin-regular.woff2') format("woff2"), url('"{{ "/assets  | absolute_url }}/fonts/eb-garamond-v9-latin-regular.woff') format("woff"), url('"{{ "/assets  | absolute_url }}/fonts/eb-garamond-v9-latin-regular.ttf') format("truetype"), url('"{{ "/assets  | absolute_url }}/fonts/eb-garamond-v9-latin-regular.svg#EBGaramond') format("svg"); /* Legacy iOS */
+}
+body {
+  background: #fffbeb;
+  color: #343231;
+  font-family: "EB Garamond", Garamond, "Times New Roman", serif;
+  font-size: 1.3125em;
+  line-height: 1.5;
+}
+
 /*# sourceMappingURL=styles.css.map */
