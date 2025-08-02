@@ -1,0 +1,8 @@
+# recall that any links generated in _site should be updated in all other files (in _data, _layouts, _includes etc.)
+
+- name: Home
+  link: /
+- name: About
+  link: /about.html
+- name: Blog
+  link: /blog.html
