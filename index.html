@@ -43,6 +43,12 @@
 	  font-weight: normal;
 	  font-style: normal;
 	}
+	@font-face {
+	  font-family: 'uthmanic';
+	  src: url('fonts/uthmanic/uthmanic.otf') format('opentype');
+	  font-weight: normal;
+	  font-style: normal;
+	}
 	
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
@@ -66,9 +72,6 @@
       margin-bottom: 1.1rem; font-family: 'redaction', serif; font-size: 1.6rem; font-weight: normal; color: var(--accent); flex-shrink: 0;
     }
     .sidebar-name { font-family: 'redaction', serif; font-size: 2.00rem; font-weight: 450; line-height: 1.3; margin-bottom: .25rem; }
-	.sidebar-name-ar {font-family: 'Scheherazade New', serif; font-size: 2.00rem;  color: var(--text);  direction: rtl;  margin-bottom: .50rem;
-	line-height: 1.4;
-	}
     .sidebar-role { font-size: .78rem; color: var(--muted); margin-bottom: .15rem; }
     .sidebar-inst { font-size: .78rem; color: var(--accent); margin-bottom: 1.8rem; }
     nav ul { list-style: none; display: flex; flex-direction: column; gap: .15rem; }
@@ -98,7 +101,7 @@
     h2:first-of-type { margin-top: 0; }
     p { color: var(--muted); margin-bottom: .9rem; font-size: .95rem; }
     p strong { color: var(--text); font-weight: 500; }
-	h1.ar {font-family: 'Scheherazade New', serif; direction: ltr; font-size: 4rem; font-weight: 400; margin-bottom: 2rem;} /* H1 arabic */
+	h1.ar {font-family: 'uthmanic', serif; direction: ltr; font-size: 4rem; font-weight: 400; margin-bottom: 2rem;} /* H1 arabic */
 
     /* ABOUT */
     .about-intro { margin-bottom: 2.4rem; padding-bottom: 2.4rem; border-bottom: 1px solid var(--border); }
