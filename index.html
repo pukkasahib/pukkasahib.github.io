@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dr. Jane Doe — Structural Biology</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:       #f9f7f4;
+      --white:    #ffffff;
+      --text:     #1e1c1a;
+      --muted:    #7a736c;
+      --border:   #e4ddd6;
+      --accent:   #3d6b52;
+      --accent-lt:#eef3f0;
+      --tag-bg:   #f0ece7;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      font-weight: 300;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── LAYOUT ── */
+    .shell {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── SIDEBAR ── */
+    aside {
+      position: sticky; top: 0; height: 100vh;
+      background: var(--white);
+      border-right: 1px solid var(--border);
+      display: flex; flex-direction: column;
+      padding: 2.8rem 1.8rem;
+      overflow-y: auto;
+    }
+    .avatar {
+      width: 76px; height: 76px; border-radius: 50%;
+      background: var(--accent-lt); border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem;
+      font-family: 'Lora', serif; font-size: 1.6rem; color: var(--accent);
+      flex-shrink: 0;
+    }
+    .sidebar-name { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; line-height: 1.3; margin-bottom: .25rem; }
+    .sidebar-role { font-size: .78rem; color: var(--muted); margin-bottom: .15rem; }
+    .sidebar-inst { font-size: .78rem; color: var(--accent); margin-bottom: 1.8rem; }
+
+    nav ul { list-style: none; display: flex; flex-direction: column; gap: .15rem; }
+    nav a {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .5rem .7rem; border-radius: 7px;
+      font-size: .85rem; font-weight: 400; color: var(--muted);
+      transition: background .15s, color .15s;
+    }
+    nav a:hover, nav a.active { background: var(--accent-lt); color: var(--accent); }
+    nav a .icon { font-size: .95rem; width: 1.1rem; text-align: center; }
+
+    .sidebar-footer { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .sidebar-links { display: flex; gap: .6rem; flex-wrap: wrap; }
+    .sidebar-links a {
+      font-size: .75rem; color: var(--muted);
+      padding: .3rem .6rem; border: 1px solid var(--border); border-radius: 5px;
+      transition: border-color .15s, color .15s;
+    }
+    .sidebar-links a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── MAIN ── */
+    main { padding: 4rem 5rem; max-width: 820px; }
+
+    section { display: none; }
+    section.active { display: block; animation: fadein .22s ease; }
+    @keyframes fadein { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
+
+    .section-label {
+      font-size: .68rem; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem;
+    }
+    h1 { font-family: 'Lora', serif; font-size: 2rem; font-weight: 600; line-height: 1.25; margin-bottom: .6rem; }
+    h2 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600; margin-bottom: .8rem; margin-top: 2.4rem; }
+    h2:first-of-type { margin-top: 0; }
+    p { color: var(--muted); margin-bottom: .9rem; font-size: .95rem; }
+    p strong { color: var(--text); font-weight: 500; }
+
+    /* ── ABOUT ── */
+    .about-intro { margin-bottom: 2.4rem; padding-bottom: 2.4rem; border-bottom: 1px solid var(--border); }
+    .interests { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .tag { background: var(--tag-bg); color: var(--text); font-size: .76rem; padding: .28rem .75rem; border-radius: 20px; }
+    .news-list { list-style: none; display: flex; flex-direction: column; gap: .9rem; }
+    .news-list li { display: grid; grid-template-columns: 68px 1fr; gap: 1rem; font-size: .88rem; }
+    .news-date { color: var(--muted); font-size: .8rem; padding-top: .05rem; }
+
+    /* ── CV ── */
+    .cv-download {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--accent); color: #fff;
+      padding: .55rem 1.2rem; border-radius: 7px;
+      font-size: .85rem; font-weight: 500; margin-bottom: 2rem;
+      transition: opacity .15s;
+    }
+    .cv-download:hover { opacity: .82; }
+    .cv-entry {
+      display: grid; grid-template-columns: 90px 1fr; gap: 1rem;
+      padding: 1.1rem 0; border-bottom: 1px solid var(--border); font-size: .9rem;
+    }
+    .cv-entry:last-child { border-bottom: none; }
+    .cv-year { color: var(--muted); font-size: .78rem; padding-top: .15rem; }
+    .cv-title { font-weight: 500; font-size: .92rem; color: var(--text); }
+    .cv-sub { color: var(--muted); font-size: .82rem; }
+
+    /* ── PROJECTS ── */
+    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: .5rem; }
+    .proj-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem;
+      transition: box-shadow .2s, transform .2s;
+    }
+    .proj-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.07); transform: translateY(-2px); }
+    .proj-card h3 { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; margin-bottom: .4rem; }
+    .proj-card p { font-size: .84rem; margin-bottom: .9rem; }
+    .proj-meta { display: flex; align-items: center; justify-content: space-between; font-size: .75rem; color: var(--muted); }
+    .proj-meta a { color: var(--accent); font-weight: 500; font-size: .8rem; }
+    .proj-meta a:hover { text-decoration: underline; }
+    .proj-lang { display: flex; align-items: center; gap: .35rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+
+    /* ── PUBLICATIONS ── */
+    .pub-entry { padding: 1.3rem 0; border-bottom: 1px solid var(--border); font-size: .88rem; }
+    .pub-entry:last-child { border-bottom: none; }
+    .pub-title { font-weight: 500; color: var(--text); margin-bottom: .3rem; font-size: .93rem; line-height: 1.4; }
+    .pub-authors { color: var(--muted); font-size: .82rem; margin-bottom: .25rem; }
+    .pub-journal { font-size: .82rem; color: var(--accent); font-style: italic; }
+    .pub-links { margin-top: .5rem; display: flex; gap: .6rem; }
+    .pub-link {
+      font-size: .75rem; padding: .2rem .6rem; border: 1px solid var(--border); border-radius: 4px;
+      color: var(--muted); transition: color .15s, border-color .15s;
+    }
+    .pub-link:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* ── TEACHING ── */
+    .teach-entry { padding: 1.2rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+    .teach-entry:last-child { border-bottom: none; }
+    .teach-title { font-weight: 500; color: var(--text); font-size: .93rem; }
+    .teach-meta { color: var(--muted); font-size: .82rem; margin-top: .2rem; }
+
+    /* ── CONTACT ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem; }
+    .contact-card {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      padding: 1.2rem 1.3rem; display: flex; align-items: center; gap: .9rem;
+      transition: border-color .15s;
+    }
+    .contact-card:hover { border-color: var(--accent); }
+    .c-icon { font-size: 1.2rem; width: 2rem; text-align: center; color: var(--accent); }
+    .c-label { font-size: .72rem; color: var(--muted); }
+    .c-val { font-weight: 500; font-size: .88rem; color: var(--text); }
+    .map-box {
+      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
+      padding: 2rem; text-align: center; color: var(--muted); font-size: .85rem;
+    }
+    .map-box strong { display: block; color: var(--text); font-weight: 500; margin-bottom: .3rem; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 820px) {
+      .shell { grid-template-columns: 1fr; }
+      aside {
+        position: static; height: auto;
+        flex-direction: row; flex-wrap: wrap; gap: 1rem;
+        padding: 1.2rem 1.4rem; border-right: none; border-bottom: 1px solid var(--border);
+        align-items: center;
+      }
+      .avatar { width: 44px; height: 44px; font-size: .95rem; margin-bottom: 0; }
+      .sidebar-role, .sidebar-inst { display: none; }
+      nav ul { flex-direction: row; flex-wrap: wrap; gap: .2rem; }
+      .sidebar-footer { display: none; }
+      main { padding: 2rem 1.4rem; }
+      .project-grid, .contact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <aside>
+    <div class="avatar">JD</div>
+    <div class="sidebar-name">Dr. Jane Doe</div>
+    <div class="sidebar-role">Postdoctoral Researcher</div>
+    <div class="sidebar-inst">University of Toronto</div>
+
+    <nav>
+      <ul>
+        <li><a href="#" class="active" data-section="about"><span class="icon">◉</span> About</a></li>
+        <li><a href="#" data-section="cv"><span class="icon">▤</span> CV</a></li>
+        <li><a href="#" data-section="projects"><span class="icon">⌥</span> Projects</a></li>
+        <li><a href="#" data-section="publications"><span class="icon">⊞</span> Publications</a></li>
+        <li><a href="#" data-section="teaching"><span class="icon">◈</span> Teaching</a></li>
+        <li><a href="#" data-section="contact"><span class="icon">◎</span> Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-links">
+        <a href="https://github.com" target="_blank">GitHub</a>
+        <a href="https://scholar.google.com" target="_blank">Scholar</a>
+        <a href="https://orcid.org" target="_blank">ORCID</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+      </div>
+    </div>
+  </aside>
+
+  <main>
+
+    <!-- ABOUT -->
+    <section id="about" class="active">
+      <div class="section-label">About</div>
+      <div class="about-intro">
+        <h1>Jane Doe</h1>
+        <p><strong>Postdoctoral Researcher</strong> in the Department of Biochemistry, University of Toronto. I use cryo-EM and X-ray crystallography to resolve structures of membrane proteins and understand how conformational dynamics drive function.</p>
+        <p>Previously I completed my PhD at the MRC Laboratory of Molecular Biology, Cambridge, where I worked on the structural basis of ion channel gating.</p>
+        <div class="interests">
+          <span class="tag">Cryo-EM</span>
+          <span class="tag">X-ray crystallography</span>
+          <span class="tag">Membrane proteins</span>
+          <span class="tag">Ion channels</span>
+          <span class="tag">Molecular dynamics</span>
+          <span class="tag">Drug design</span>
+        </div>
+      </div>
+
+      <h2>News</h2>
+      <ul class="news-list">
+        <li><span class="news-date">Mar 2025</span><span>New preprint on TRPV1 lipid modulation posted to bioRxiv. <a href="#" style="color:var(--accent)">Read →</a></span></li>
+        <li><span class="news-date">Jan 2025</span><span>Awarded CIHR Postdoctoral Fellowship for 2025–2027.</span></li>
+        <li><span class="news-date">Nov 2024</span><span>Paper accepted in <em>Nature Structural & Molecular Biology</em>.</span></li>
+        <li><span class="news-date">Sep 2024</span><span>Talk at the 2024 Structural Biology Symposium, Montreal.</span></li>
+      </ul>
+    </section>
+
+    <!-- CV -->
+    <section id="cv">
+      <div class="section-label">Curriculum Vitae</div>
+      <a href="cv.pdf" class="cv-download">↓ Download PDF</a>
+
+      <h2>Education</h2>
+      <div class="cv-entry">
+        <div class="cv-year">2019–2023</div>
+        <div>
+          <div class="cv-title">PhD in Structural Biology</div>
+          <div class="cv-sub">MRC Laboratory of Molecular Biology, Cambridge, UK</div>
+          <div class="cv-sub" style="margin-top:.2rem">Thesis: <em>Structural mechanisms of voltage-gated ion channel gating</em></div>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">2015–2019</div>
+        <div>
+          <div class="cv-title">BSc (Hons) Biochemistry, First Class</div>
+          <div class="cv-sub">University of Edinburgh</div>
+        </div>
+      </div>
+
+      <h2>Positions</h2>
+      <div class="cv-entry">
+        <div class="cv-year">2023–</div>
+        <div>
+          <div class="cv-title">Postdoctoral Researcher</div>
+          <div class="cv-sub">Bhatt Lab, University of Toronto</div>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">2022</div>
+        <div>
+          <div class="cv-title">Visiting Researcher</div>
+          <div class="cv-sub">Diamond Light Source, Oxford, UK</div>
+        </div>
+      </div>
+
+      <h2>Awards & Funding</h2>
+      <div class="cv-entry">
+        <div class="cv-year">2025</div>
+        <div>
+          <div class="cv-title">CIHR Postdoctoral Fellowship</div>
+          <div class="cv-sub">Canadian Institutes of Health Research</div>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">2020</div>
+        <div>
+          <div class="cv-title">MRC PhD Studentship</div>
+          <div class="cv-sub">Medical Research Council, UK</div>
+        </div>
+      </div>
+
+      <h2>Skills</h2>
+      <div class="cv-entry">
+        <div class="cv-year">Methods</div>
+        <div><div class="cv-sub">Cryo-EM · X-ray crystallography · Protein expression & purification · Lipid nanodisc reconstitution · MD simulation (GROMACS, NAMD)</div></div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">Software</div>
+        <div><div class="cv-sub">RELION · cryoSPARC · PHENIX · CCP4 · PyMOL · Python · R</div></div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+      <div class="section-label">Projects</div>
+      <h1>Open-source tools</h1>
+      <p>Software and datasets from the lab, freely available on GitHub.</p>
+      <div class="project-grid">
+        <div class="proj-card">
+          <h3>CryoParser</h3>
+          <p>Automated cryo-EM particle picking and 2D classification using a lightweight CNN.</p>
+          <div class="proj-meta">
+            <div class="proj-lang"><span class="dot"></span> Python</div>
+            <a href="https://github.com" target="_blank">View on GitHub →</a>
+          </div>
+        </div>
+        <div class="proj-card">
+          <h3>MembraneBuilder</h3>
+          <p>Streamlined tool for constructing and equilibrating membrane systems for MD simulation.</p>
+          <div class="proj-meta">
+            <div class="proj-lang"><span class="dot" style="background:#3d6b90"></span> Python / TCL</div>
+            <a href="https://github.com" target="_blank">View on GitHub →</a>
+          </div>
+        </div>
+        <div class="proj-card">
+          <h3>StructAlign</h3>
+          <p>Fast pairwise and multiple structural alignment for large sets of cryo-EM protein models.</p>
+          <div class="proj-meta">
+            <div class="proj-lang"><span class="dot" style="background:#7a5c2e"></span> C++ / Python</div>
+            <a href="https://github.com" target="_blank">View on GitHub →</a>
+          </div>
+        </div>
+        <div class="proj-card">
+          <h3>PDB-Curator</h3>
+          <p>Quality-filter and annotate PDB depositions for downstream ML training datasets.</p>
+          <div class="proj-meta">
+            <div class="proj-lang"><span class="dot" style="background:#6b3d6b"></span> Python</div>
+            <a href="https://github.com" target="_blank">View on GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PUBLICATIONS -->
+    <section id="publications">
+      <div class="section-label">Publications</div>
+      <h1>Selected publications</h1>
+      <p>* equal contribution. Full list on <a href="https://scholar.google.com" target="_blank" style="color:var(--accent)">Google Scholar</a>.</p>
+
+      <div class="pub-entry">
+        <div class="pub-title">Lipid modulation of TRPV1 channel gating resolved by cryo-EM</div>
+        <div class="pub-authors"><strong>Doe J</strong>, Smith A, Patel R, Bhatt D.</div>
+        <div class="pub-journal">Nature Structural & Molecular Biology, 2024</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#">DOI</a>
+          <a class="pub-link" href="#">PDF</a>
+          <a class="pub-link" href="#">bioRxiv</a>
+        </div>
+      </div>
+      <div class="pub-entry">
+        <div class="pub-title">Structural basis of voltage sensing in the Kv1.2 channel</div>
+        <div class="pub-authors"><strong>Doe J*</strong>, Müller K*, Jones E, Clarke S.</div>
+        <div class="pub-journal">eLife, 2023</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#">DOI</a>
+          <a class="pub-link" href="#">PDF</a>
+        </div>
+      </div>
+      <div class="pub-entry">
+        <div class="pub-title">Cryo-EM structure of the ATP-sensitive potassium channel in the inhibited state</div>
+        <div class="pub-authors">Wang X, <strong>Doe J</strong>, Ahmad Y, Lee C, Clarke S.</div>
+        <div class="pub-journal">PNAS, 2022</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#">DOI</a>
+          <a class="pub-link" href="#">PDF</a>
+        </div>
+      </div>
+      <div class="pub-entry">
+        <div class="pub-title">Automated 2D classification improves particle selection in cryo-EM pipelines</div>
+        <div class="pub-authors"><strong>Doe J</strong>, Evans T, Clarke S.</div>
+        <div class="pub-journal">Journal of Structural Biology, 2021</div>
+        <div class="pub-links">
+          <a class="pub-link" href="#">DOI</a>
+          <a class="pub-link" href="#">PDF</a>
+          <a class="pub-link" href="#">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEACHING -->
+    <section id="teaching">
+      <div class="section-label">Teaching</div>
+      <h1>Teaching & mentorship</h1>
+      <p>I am committed to accessible science education and enjoy mentoring students at all levels.</p>
+
+      <h2>Courses</h2>
+      <div class="teach-entry">
+        <div class="teach-title">BCH320 — Protein Structure & Function</div>
+        <div class="teach-meta">Teaching Assistant · University of Toronto · 2024–present</div>
+        <p style="margin-top:.5rem">Led weekly tutorials and graded problem sets for a 120-student undergraduate course covering protein folding, structure determination, and enzymology.</p>
+      </div>
+      <div class="teach-entry">
+        <div class="teach-title">BCH1000 — Graduate Methods in Structural Biology</div>
+        <div class="teach-meta">Guest Lecturer · University of Toronto · 2024</div>
+        <p style="margin-top:.5rem">Two guest lectures on cryo-EM sample preparation and data processing for first-year graduate students.</p>
+      </div>
+      <div class="teach-entry">
+        <div class="teach-title">BIOC Part II — Advanced Biochemistry</div>
+        <div class="teach-meta">Demonstrator · University of Cambridge · 2020–2022</div>
+        <p style="margin-top:.5rem">Supervised practical sessions in protein crystallisation and X-ray data collection for undergraduates.</p>
+      </div>
+
+      <h2>Mentorship</h2>
+      <div class="teach-entry">
+        <div class="teach-title">MSc & Undergraduate Supervision</div>
+        <div class="teach-meta">2023–present</div>
+        <p style="margin-top:.5rem">Day-to-day co-supervision of two MSc rotation students and one undergraduate thesis student on cryo-EM projects.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-label">Contact</div>
+      <h1>Get in touch</h1>
+      <p>Happy to discuss collaborations, student opportunities, or anything structural biology.</p>
+
+      <div class="contact-grid">
+        <a href="mailto:jane.doe@utoronto.ca" class="contact-card">
+          <span class="c-icon">✉</span>
+          <div><div class="c-label">Email</div><div class="c-val">jane.doe@utoronto.ca</div></div>
+        </a>
+        <a href="https://github.com" class="contact-card" target="_blank">
+          <span class="c-icon">⌥</span>
+          <div><div class="c-label">GitHub</div><div class="c-val">github.com/janedoe</div></div>
+        </a>
+        <a href="https://scholar.google.com" class="contact-card" target="_blank">
+          <span class="c-icon">⊞</span>
+          <div><div class="c-label">Google Scholar</div><div class="c-val">Jane Doe</div></div>
+        </a>
+        <a href="https://orcid.org" class="contact-card" target="_blank">
+          <span class="c-icon">◉</span>
+          <div><div class="c-label">ORCID</div><div class="c-val">0000-0000-0000-0000</div></div>
+        </a>
+      </div>
+
+      <div class="map-box">
+        <strong>Bhatt Lab · Department of Biochemistry</strong>
+        University of Toronto · Medical Sciences Building<br>
+        1 King's College Circle, Toronto, ON M5S 1A8
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+  const links = document.querySelectorAll('nav a[data-section]');
+  const sections = document.querySelectorAll('section');
+
+  function show(id) {
+    sections.forEach(s => s.classList.toggle('active', s.id === id));
+    links.forEach(a => a.classList.toggle('active', a.dataset.section === id));
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  links.forEach(a => a.addEventListener('click', e => { e.preventDefault(); show(a.dataset.section); }));
+</script>
+</body>
+</html>
