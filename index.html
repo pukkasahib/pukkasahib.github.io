@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yousuf O. Ramahi — Computational Biophysics</title>
+  <title>Yousuf O. Ramahi</title>
   <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@0,400;0,600;1,400&family=Scheherazade+New:wght@400;500&display=swap"" rel="stylesheet"/>
   <link rel="icon" type="image/png" href="favicon.png"/> <!-- This is the web-browswer tab icon -->
 
@@ -64,7 +64,36 @@
 
 	
     /* LAYOUT */
-    .shell { display: grid; grid-template-columns: 240px 1fr; min-height: 100vh; }
+    .shell { display: grid; grid-template-columns: 350px 1fr; min-height: 100vh; }
+
+    /* BORDER FOR NICE LOOKS */
+    .border-right-1 {
+    position: fixed;
+    right: 10px; top: 1rem;
+    width: .5rem;
+    bottom: 1rem;
+    background: black;
+    border-radius: 0 0 0 0;
+    z-index: 2000;
+  }
+    .border-right-2 {
+    position: fixed;
+    right: 30px; top: 10rem;
+    width: .5rem;
+    bottom: 1rem;
+    background: black;
+    border-radius: 0 0 0 0;
+    z-index: 2000;
+  }
+    .border-right-3 {
+    position: fixed;
+    right: 50px; top: 20rem;
+    width: .5rem;
+    bottom: 1rem;
+    background: black;
+    border-radius: 0 0 0 0;
+    z-index: 2000;
+  }
 
     /* SIDEBAR */
     aside {
@@ -264,7 +293,7 @@
       <div class="about-intro">
         <h1>Yousuf O. Ramahi</h1>
 		    <h1 class="ar">يوسف ع. الرمحي</h1>
-        <p><strong>PhD student</strong> in the Department of Chemistry at the University of Toronto. Biographical sketch...</p>
+        <p><strong>PhD student</strong> in the Rauscher Group in the Department of Chemistry at the University of Toronto. Biographical sketch...</p>
         <p>Previously I completed my history sketch...</p>
         <div class="interests">
           <span class="tag">Protein allostery</span>
@@ -533,5 +562,10 @@
   lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 </script>
+
+<div class="border-right-1"></div>
+<div class="border-right-2"></div>
+<div class="border-right-3"></div>
+
 </body>
 </html>
