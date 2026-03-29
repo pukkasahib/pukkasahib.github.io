@@ -73,14 +73,14 @@
       display: flex; flex-direction: column; padding: 2.8rem 1.8rem; overflow-y: auto;
     }
     .avatar {
-      width: 76px; height: 76px; border-radius: 50%;
+      width: 76px; height: 76px; border-radius: 5%;
       background: var(--accent-lt); border: 2px solid var(--border);
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 1.1rem; font-family: 'redaction', serif; font-size: 1.6rem; font-weight: normal; color: var(--accent); flex-shrink: 0;
     }
     .sidebar-name { font-family: 'redaction', serif; font-size: 2.00rem; font-weight: 450; line-height: 1.3; margin-bottom: .25rem; }
-    .sidebar-role { font-size: .78rem; color: var(--uoft-yellow); margin-bottom: .15rem; }
-    .sidebar-inst { font-size: .78rem; color: var(--accent); margin-bottom: 1.8rem; }
+    .sidebar-role { font-size: 1rem; color: var(--uoft-yellow); margin-bottom: .15rem; font-weight: 400;}
+    .sidebar-inst { font-size: 1rem; color: var(--accent); margin-bottom: 1.8rem; font-weight: 400;}
     nav ul { list-style: none; display: flex; flex-direction: column; gap: .15rem; }
     nav a {
       display: flex; align-items: center; gap: .6rem;
@@ -102,13 +102,13 @@
     section { display: none; }
     section.active { display: block; animation: fadein .22s ease; }
     @keyframes fadein { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
-    .section-label { font-size: .68rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem; }
+    .section-label { font-size: 1rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem; }
     h1 { font-family: 'redaction', serif; font-size: 4rem; font-weight: 400; line-height: 1.25; margin-bottom: .6rem; }
     h2 { font-family: 'redaction', serif; font-size: 2rem; font-weight: 400; margin-bottom: .8rem; margin-top: 2.4rem; }
     h2:first-of-type { margin-top: 0; }
     p { color: var(--muted); margin-bottom: .9rem; font-size: .95rem; }
     p strong { color: var(--text); font-weight: 500; }
-	h1.ar {font-family: 'uthmanic', serif; direction: ltr; font-size: 3.3rem; font-weight: 400; margin-bottom: 2rem;} /* H1 arabic */
+	h1.ar {font-family: 'uthmanic', serif; direction: ltr; font-size: 4.3rem; font-weight: 400; margin-bottom: 2rem;} /* H1 arabic */
 
     /* ABOUT */
     .about-intro { margin-bottom: 2.4rem; padding-bottom: 2.4rem; border-bottom: 1px solid var(--border); }
@@ -281,18 +281,29 @@
       <a href="cv.pdf" class="cv-download">↓ Download PDF</a>
       <h2>Education</h2>
       <div class="cv-entry">
-        <div class="cv-year">20XX–20XX</div>
+        <div class="cv-year">2024–Present</div>
         <div>
-          <div class="cv-title">PhD in XX</div>
-          <div class="cv-sub">Location, loc, lo</div>
-          <div class="cv-sub" style="margin-top:.2rem">Thesis: <em>Thesis title</em></div>
+          <div class="cv-title">PhD in Chemistry</div>
+          <div class="cv-sub">University of Toronto</div>
+          <div class="cv-sub"><b>Supervisor:</b> Prof. Sarah Rauscher</div>
         </div>
       </div>
       <div class="cv-entry">
-        <div class="cv-year">2015–2019</div>
+        <div class="cv-year">2022–2024</div>
         <div>
-          <div class="cv-title">BSc (Hons) Biochemistry, First Class</div>
-          <div class="cv-sub">University of Edinburgh</div>
+          <div class="cv-title">MSc Chemistry</div>
+          <div class="cv-sub">University of Toronto</div>
+          <div class="cv-sub"><b>Thesis:</b> A Binary-Switch Model of the Adenosine A<sub>2A</sub> G Protein-Coupled Receptor: A Molecular Dynamics Study</div>
+          <div class="cv-sub"><b>Supervisor:</b> Prof. Sarah Rauscher</div>
+        </div>
+      </div>
+      <div class="cv-entry">
+        <div class="cv-year">2017–2021</div>
+        <div>
+          <div class="cv-title">BSc (Hons) Life Physics - Biophysics Specialization</div>
+          <div class="cv-sub">University of Waterloo</div>
+          <div class="cv-sub"><b>Thesis:</b> The Effect of Oxidized Lipids on Amyloid-&beta; Toxicity: A Black Lipid Membrane Study</div>
+          <div class="cv-sub"><b>Supervisor:</b> Prof. Zoya Leonenko</div>
         </div>
       </div>
       <h2>Positions</h2>
@@ -328,11 +339,11 @@
       <h2>Skills</h2>
       <div class="cv-entry">
         <div class="cv-year">Methods</div>
-        <div><div class="cv-sub">Cryo-EM · X-ray crystallography · Protein expression &amp; purification · Lipid nanodisc reconstitution · MD simulation (GROMACS, NAMD)</div></div>
+        <div><div class="cv-sub"> Classical Molecular Dynamics Simulations (GROMACS) </div></div>
       </div>
       <div class="cv-entry">
         <div class="cv-year">Software</div>
-        <div><div class="cv-sub">RELION · cryoSPARC · PHENIX · CCP4 · PyMOL · Python · R</div></div>
+        <div><div class="cv-sub"> GROMACS &bullet; Python &bullet; ChimeraX &bullet; PyMOL &bullet; VMD &bullet; Bash Scripting &bullet; LaTeX</div></div>
       </div>
     </section>
 
@@ -451,9 +462,9 @@
       </div>
       <h2>Mentorship</h2>
       <div class="teach-entry">
-        <div class="teach-title">MSc &amp; Undergraduate Supervision</div>
+        <div class="teach-title">Undergraduate Supervision</div>
         <div class="teach-meta">2023–present</div>
-        <p style="margin-top:.5rem">Day-to-day co-supervision of two MSc rotation students and one undergraduate thesis student on cryo-EM projects.</p>
+        <p style="margin-top:.5rem">Day-to-day supervision of ???...</p>
       </div>
     </section>
 
@@ -461,14 +472,14 @@
     <section id="contact">
       <div class="section-label">Contact</div>
       <h1>Get in touch</h1>
-      <p>Happy to discuss collaborations, student opportunities, or anything structural biology.</p>
+      <p></p>
       <div class="contact-grid">
         <a href="mailto:yousuf.ramahi@mail.utoronto.ca" class="contact-card">
           <span class="c-icon">✉</span>
           <div><div class="c-label">Email</div><div class="c-val">yousuf.ramahi@mail.utoronto.ca</div></div>
         </a>
         <a href="https://scholar.google.com/citations?user=ZZDK5lgAAAAJ&hl=en&oi=ao" class="contact-card" target="_blank">
-          <span class="c-icon">⊞</span>
+          <span class="c-icon">&#x2733;</span>
           <div><div class="c-label">Google Scholar</div><div class="c-val">Yousuf O. Ramahi</div></div>
         </a>
       </div>
