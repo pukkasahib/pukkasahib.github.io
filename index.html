@@ -65,6 +65,24 @@
 
   html { font-size: 13px; }
 
+  body::before {
+    content: 'Y❦R';
+    font-family: 'reforma', serif;
+    font-weight: 600;
+    font-size: clamp(420px, 55vw, 720px);
+    line-height: 1;
+    color: var(--rule);
+    opacity: 0.17;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-56%, -48%);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    letter-spacing: -0.05em;
+  }
+
   body {
     background: var(--paper);
     color: var(--ink);
@@ -199,16 +217,16 @@
 
   <nav class="nav">
     <a href="#research">Research</a>
-    <a href="#publications">Publications</a>
     <a href="#teaching">Teaching</a>
+    <a href="#service">Service and Outreach</a>
     <a href="#cv">CV</a>
   </nav>
 </header>
 
 <div class="intro">
   <div class="intro-bio">
-    <p>PhD candidate in computational protein biophysics at [University], advised by [Advisor]. I develop and apply computational methods to study protein structure, dynamics, and function — with a focus on [e.g. intrinsically disordered regions / membrane proteins / enzyme mechanisms].</p>
-    <p>My work combines molecular dynamics simulation, free energy calculations, and [e.g. machine learning / coarse-grained modeling] to address questions in [e.g. protein folding / ligand binding / allostery]. I am broadly interested in how physical principles govern biological machines at the molecular scale.</p>
+    <p>PhD student working in computational protein biophysics at the University of Toronto, supervised by Prof. <a href="https://rauscher-group.physics.utoronto.ca/" target="_blank"> Sarah Rauscher.</a></p>
+    <p>My work makes use of classical all-atom molecular dynamics simulations to address questions protein allostery and functional dynamics. I am broadly interested in how correlated and high-fidelity dynamics emerge from the tertiary fold of proteins, and how we may better quantify protein allostery and state transitions on the single-molecule level.</p>
   </div>
 
   <div class="intro-meta">
@@ -334,7 +352,7 @@
 </div>
 
 <div class="section" id="teaching">
-  <div class="section-header">Teaching &amp; Service</div>
+  <div class="section-header">Teaching</div>
 
   <div class="item">
     <div class="item-year">2024</div>
@@ -350,11 +368,23 @@
       <span class="item-sub">ad hoc peer reviewer</span>
     </div>
   </div>
+</div>
+
+<div class="section" id="service">
+  <div class="section-header">Service</div>
+
+  <div class="item">
+    <div class="item-year">year</div>
+    <div>
+      Teaching Assistant — [Physical Biochemistry / Structural Biology / Biophysics]
+      <span class="item-sub">[Your University], [Fall / Spring] semester</span>
+    </div>
+  </div>
   <div class="item">
     <div class="item-year">2023</div>
     <div>
-      [Outreach / mentoring / committee role]
-      <span class="item-sub">[e.g. Graduate Student Association, undergraduate research mentor]</span>
+      XXX — [J. Chem. Theory Comput. / PLOS Comp. Bio. / Proteins]
+      <span class="item-sub">description</span>
     </div>
   </div>
 </div>
