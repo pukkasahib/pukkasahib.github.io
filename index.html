@@ -1,538 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Yousuf O. Ramahi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@0,400;0,600;1,400&family=Scheherazade+New:wght@400;500&display=swap"" rel="stylesheet"/>
-  <link rel="icon" type="image/png" href="favicon.png"/> <!-- This is the web-browswer tab icon -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,300;0,400;1,300&display=swap');
 
-  <script>
-    MathJax = {
-    tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] }
-    };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
-    :root {
-      --bg:       #f9f7f4;
-      --white:    #ffffff;
-      --text:     #1e1c1a;
-      --muted:    #7a736c;
-      --border:   #e4ddd6;
-      --accent:   #1e3765;
-      --accent-lt:#eef3f0;
-      --tag-bg:   #f0ece7;
-	  --uoft-yellow:#f1c500
-    }
-	@font-face {
-	  font-family: 'redaction';
-	  src: url('fonts/redaction/Redaction-Regular.otf') format('opentype');
-	  font-weight: normal;
-	  font-style: normal;
-	}
-	@font-face {
-	  font-family: 'redaction';
-	  src: url('fonts/redaction/Redaction-Bold.otf') format('opentype');
-	  font-weight: 600;
-	  font-style: bold;
-	}
-	@font-face {
-	  font-family: 'redaction';
-	  src: url('fonts/redaction/Redaction-Italic.otf') format('opentype');
-	  font-weight: normal;
-	  font-style: italic;
-	}
-	@font-face {
-	  font-family: 'ottoattack';
-	  src: url('fonts/otto_attack_type/OTTOATTACTYPE.ttf') format('truetype');
-	  font-weight: normal;
-	  font-style: normal;
-	}
-	@font-face {
-	  font-family: 'uthmanic';
-	  src: url('fonts/uthmanic/uthmanic.otf') format('opentype');
-	  font-weight: normal;
-	  font-style: normal;
-	}
-	
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: 'Atkinson Hyperlegible Next', serif; font-weight: 300; background: var(--bg); color: var(--text); line-height: 1.65; cursor: url('cursor.png'), auto;}
-    a { color: inherit; text-decoration: none; }
+  :root {
+    --ink: #0e0e0e;
+    --paper: #f6f4ef;
+    --muted: #9a9690;
+    --rule: #d6d3cc;
+  }
 
-	
-    /* LAYOUT */
-    .shell { display: grid; grid-template-columns: 350px 1fr; min-height: 100vh; }
+  html { font-size: 13px; }
 
-    /* SIDEBAR */
-    aside {
-      position: sticky; top: 0; height: 100vh;
-      background: var(--white); border-right: 1px solid var(--border);
-      display: flex; flex-direction: column; padding: 2.8rem 1.8rem; overflow-y: auto;
-    }
-    .avatar {
-      width: 76px; height: 76px; border-radius: 5%;
-      background: var(--accent-lt); border: 2px solid var(--border);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.1rem; font-family: 'redaction', serif; font-size: 1.6rem; font-weight: normal; color: var(--accent); flex-shrink: 0;
-    }
-    .sidebar-name { font-family: 'redaction', serif; font-size: 2.00rem; font-weight: 450; line-height: 1.3; margin-bottom: .25rem; }
-    .sidebar-role { font-size: 1rem; color: var(--uoft-yellow); margin-bottom: .15rem; font-weight: 400;}
-    .sidebar-inst { font-size: 1rem; color: var(--accent); margin-bottom: 1.8rem; font-weight: 400;}
-    nav ul { list-style: none; display: flex; flex-direction: column; gap: .15rem; }
-    nav a {
-      display: flex; align-items: center; gap: .6rem;
-      padding: .5rem .7rem; border-radius: 7px; font-size: .85rem; font-weight: 400; color: var(--muted);
-      transition: background .15s, color .15s;
-    }
-    nav a:hover, nav a.active { background: var(--accent-lt); color: var(--accent); }
-    nav a .icon { font-size: .95rem; width: 1.1rem; text-align: center; }
-    .sidebar-footer { margin-top: auto; padding-top: 1.5rem; border-top: 1px solid var(--border); }
-    .sidebar-links { display: flex; gap: .6rem; flex-wrap: wrap; }
-    .sidebar-links a {
-      font-size: .75rem; color: var(--muted); padding: .3rem .6rem;
-      border: 1px solid var(--border); border-radius: 5px; transition: border-color .15s, color .15s;
-    }
-    .sidebar-links a:hover { color: var(--accent); border-color: var(--accent-lt); }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 300;
+    line-height: 1.7;
+    padding: 52px 56px 96px;
+    max-width: 860px;
+  }
 
-    /* MAIN */
-    main { padding: 4rem 5rem; max-width: 922px; }
-    section { display: none; }
-    section.active { display: block; animation: fadein .22s ease; }
-    @keyframes fadein { from { opacity: 0; transform: translateY(7px); } to { opacity: 1; transform: none; } }
-    .section-label { font-size: 1rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.8rem; }
-    h1 { font-family: 'redaction', serif; font-size: 4rem; font-weight: 400; line-height: 1.25; margin-bottom: .6rem; }
-    h2 { font-family: 'redaction', serif; font-size: 2rem; font-weight: 400; margin-bottom: .8rem; margin-top: 2.4rem; }
-    h2:first-of-type { margin-top: 0; }
-    p { color: var(--muted); margin-bottom: .9rem; font-size: .95rem; }
-    p strong { color: var(--text); font-weight: 500; }
-	h1.ar {font-family: 'uthmanic', serif; direction: ltr; font-size: 4.3rem; font-weight: 400; margin-bottom: 2rem;} /* H1 arabic */
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 60px;
+    padding-bottom: 14px;
+    border-bottom: 0.5px solid var(--rule);
+  }
 
-    /* ABOUT */
-    .about-intro { margin-bottom: 2.4rem; padding-bottom: 2.4rem; border-bottom: 1px solid var(--border); }
-    .interests { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
-    .tag { background: var(--tag-bg); color: var(--text); font-size: .76rem; padding: .28rem .75rem; border-radius: 20px; }
+  .name { font-weight: 400; font-size: 13px; }
 
-    /* CV */
-    .cv-download {
-      display: inline-flex; align-items: center; gap: .5rem; background: var(--accent); color: #fff;
-      padding: .55rem 1.2rem; border-radius: 7px; font-size: .85rem; font-weight: 500; margin-bottom: 2rem;
-      transition: opacity .15s;
-    }
-    .cv-download:hover { opacity: .82; }
-    .cv-entry { display: grid; grid-template-columns: 90px 1fr; gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
-    .cv-entry:last-child { border-bottom: none; }
-    .cv-year { color: var(--muted); font-size: .78rem; padding-top: .15rem; }
-    .cv-title { font-weight: 500; font-size: .92rem; color: var(--text); }
-    .cv-sub { color: var(--muted); font-size: .82rem; }
+  .nav { display: flex; gap: 22px; font-size: 12px; }
+  .nav a { color: var(--muted); border-bottom: none; }
+  .nav a:hover { color: var(--ink); }
 
-    /* PROJECTS */
-    .project-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: .5rem; }
-    .proj-card { background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem; transition: box-shadow .2s, transform .2s; }
-    .proj-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,.07); transform: translateY(-2px); }
-    .proj-card h3 { font-family: 'Lora', serif; font-size: 1rem; font-weight: 600; margin-bottom: .4rem; }
-    .proj-card p { font-size: .84rem; margin-bottom: .9rem; }
-    .proj-meta { display: flex; align-items: center; justify-content: space-between; font-size: .75rem; color: var(--muted); }
-    .proj-meta a { color: var(--accent); font-weight: 500; font-size: .8rem; }
-    .proj-meta a:hover { text-decoration: underline; }
-    .proj-lang { display: flex; align-items: center; gap: .35rem; }
-    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 52px;
+    margin-bottom: 64px;
+  }
 
-    /* PUBLICATIONS */
-    .pub-entry {
-      padding: 1.3rem 0; border-bottom: 1px solid var(--border);
-      font-size: .88rem;
-      display: grid; grid-template-columns: 1fr 88px; gap: 1.2rem; align-items: start;
-    }
-    .pub-entry:last-child { border-bottom: none; }
-    .pub-body { min-width: 0; }
-    .pub-title { font-weight: 500; color: var(--text); margin-bottom: .3rem; font-size: .93rem; line-height: 1.4; }
-    .pub-authors { color: var(--muted); font-size: .82rem; margin-bottom: .25rem; }
-    .pub-journal { font-size: .82rem; color: var(--accent); font-style: italic; }
-    .pub-links { margin-top: .5rem; display: flex; gap: .6rem; }
-    .pub-link {
-      font-size: .75rem; padding: .2rem .6rem; border: 1px solid var(--border); border-radius: 4px;
-      color: var(--muted); transition: color .15s, border-color .15s;
-    }
-    .pub-link:hover { color: var(--accent); border-color: var(--accent); }
+  .intro-bio { font-size: 12.5px; line-height: 1.85; }
+  .intro-bio p + p { margin-top: 1em; }
 
-    /* Figure thumbnail */
-    .pub-figure {
-      width: 88px; height: 88px; flex-shrink: 0; border-radius: 8px;
-      border: 1.5px dashed var(--border); overflow: hidden; background: var(--tag-bg);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: border-color .15s, box-shadow .15s;
-      position: relative;
-    }
-    .pub-figure.has-image { border-style: solid; }
-    .pub-figure.has-image:hover { border-color: var(--accent); box-shadow: 0 4px 14px rgba(0,0,0,.1); }
-    .pub-figure img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .pub-figure-placeholder {
-      display: flex; flex-direction: column; align-items: center; justify-content: center;
-      width: 100%; height: 100%; gap: .25rem; color: var(--muted);
-      font-size: .6rem; text-align: center; padding: .5rem; line-height: 1.3; pointer-events: none;
-    }
-    .pub-figure-placeholder .icon { font-size: 1.15rem; }
+  .intro-meta { font-size: 12px; }
+  .meta-block { margin-bottom: 1.5em; }
+  .meta-label { font-style: italic; color: var(--muted); font-size: 11.5px; display: block; margin-bottom: 4px; }
 
-    /* Lightbox */
-    .lightbox {
-      display: none; position: fixed; inset: 0; z-index: 999;
-      background: rgba(20,18,16,.8); backdrop-filter: blur(5px);
-      align-items: center; justify-content: center; cursor: pointer;
-    }
-    .lightbox.open { display: flex; animation: fadein .18s ease; }
-    .lightbox-inner { position: relative; cursor: default; }
-    .lightbox-inner img { max-width: min(700px, 90vw); max-height: 80vh; border-radius: 10px; box-shadow: 0 24px 64px rgba(0,0,0,.45); display: block; }
-    .lightbox-close {
-      position: absolute; top: -.8rem; right: -.8rem;
-      width: 2rem; height: 2rem; border-radius: 50%;
-      background: var(--white); color: var(--text);
-      display: flex; align-items: center; justify-content: center;
-      font-size: .95rem; cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,.2);
-      transition: background .15s;
-    }
-    .lightbox-close:hover { background: var(--tag-bg); }
-    .lightbox-caption { text-align: center; margin-top: .8rem; color: rgba(255,255,255,.65); font-size: .78rem; }
+  a { color: var(--ink); text-decoration: none; border-bottom: 0.5px solid var(--ink); transition: opacity 0.15s; }
+  a:hover { opacity: 0.4; }
 
-    /* TEACHING */
-    .teach-entry { padding: 1.2rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
-    .teach-entry:last-child { border-bottom: none; }
-    .teach-title { font-weight: 500; color: var(--text); font-size: .93rem; }
-    .teach-meta { color: var(--muted); font-size: .82rem; margin-top: 0.2rem; }
-    .teach-date { color: var(--muted); font-size: 0.82rem; margin-top: 0.2rem; }
+  .ext-links { display: flex; flex-direction: column; gap: 2px; }
+  .ext-links a { border-bottom: none; }
+  .ext-links a::after { content: ' ↗'; font-size: 10px; }
 
-    /* CONTACT */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2.5rem; }
-    .contact-card {
-      background: var(--white); border: 1px solid var(--border); border-radius: 10px;
-      padding: 1.2rem 1.3rem; display: flex; align-items: center; gap: .9rem; transition: border-color .15s;
-    }
-    .contact-card:hover { border-color: var(--accent); }
-    .c-icon { font-size: 1.2rem; width: 2rem; text-align: center; color: var(--accent); }
-    .c-label { font-size: .72rem; color: var(--muted); }
-    .c-val { font-weight: 500; font-size: .88rem; color: var(--text); }
-    .map-box { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 2rem; text-align: center; color: var(--muted); font-size: .85rem; }
-    .map-box strong { display: block; color: var(--text); font-weight: 500; margin-bottom: .3rem; }
+  .section { margin-bottom: 52px; }
 
-    /* RESPONSIVE */
-    @media (max-width: 820px) {
-      .shell { grid-template-columns: 276px 1fr; }
-      aside { position: static; height: auto; flex-direction: row; flex-wrap: wrap; gap: 1rem; padding: 1.2rem 1.4rem; border-right: none; border-bottom: 1px solid var(--border); align-items: center; }
-      .avatar { width: 44px; height: 44px; font-size: .95rem; margin-bottom: 0; }
-      .sidebar-role, .sidebar-inst { display: none; }
-      nav ul { flex-direction: row; flex-wrap: wrap; gap: .2rem; }
-      .sidebar-footer { display: none; }
-      main { padding: 2rem 1.4rem; }
-      .project-grid, .contact-grid { grid-template-columns: 1fr; }
-      .pub-entry { grid-template-columns: 1fr 72px; }
-      .pub-figure { width: 72px; height: 72px; }
-    }
-  </style>
+  .section-header {
+    font-size: 11.5px;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid var(--rule);
+  }
+
+  .pub {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0 20px;
+    padding: 7px 0;
+    font-size: 12.5px;
+    line-height: 1.55;
+    border-bottom: 0.5px solid transparent;
+    transition: border-color 0.1s;
+  }
+  .pub:hover { border-bottom-color: var(--rule); }
+
+  .pub-year { color: var(--muted); font-size: 11.5px; padding-top: 2px; font-variant-numeric: tabular-nums; }
+
+  .pub-title { display: block; font-weight: 400; }
+  .pub-title a { border-bottom-color: transparent; }
+  .pub-title a:hover { border-bottom-color: var(--ink); opacity: 1; }
+
+  .pub-authors { display: block; color: var(--muted); font-size: 11.5px; margin-top: 2px; }
+  .pub-venue { display: block; color: var(--muted); font-size: 11.5px; font-style: italic; }
+
+  .pub-links { display: inline-flex; gap: 10px; margin-top: 5px; }
+  .pub-links a { font-size: 11px; color: var(--muted); border-bottom: 0.5px solid var(--rule); }
+  .pub-links a:hover { color: var(--ink); border-bottom-color: var(--ink); opacity: 1; }
+
+  .item {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 0 20px;
+    padding: 4px 0;
+    font-size: 12.5px;
+  }
+
+  .item-year { color: var(--muted); font-size: 11.5px; font-variant-numeric: tabular-nums; padding-top: 1px; }
+  .item-sub { display: block; font-size: 11.5px; font-style: italic; color: var(--muted); }
+
+  .footer {
+    margin-top: 56px;
+    padding-top: 12px;
+    border-top: 0.5px solid var(--rule);
+    font-size: 11.5px;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .footer a { color: var(--muted); border-bottom-color: var(--muted); font-size: 11.5px; }
+
+  @media (max-width: 640px) {
+    body { padding: 30px 22px 70px; }
+    .intro { grid-template-columns: 1fr; gap: 32px; }
+    .top { flex-direction: column; gap: 14px; }
+    .pub, .item { grid-template-columns: 44px 1fr; gap: 0 12px; }
+  }
+</style>
 </head>
 <body>
-<div class="shell">
 
-  <aside>
-    <div class="avatar">YOR</div>
-    <div class="sidebar-name">Yousuf O. Ramahi</div>
-    <div class="sidebar-role">PhD Student</div>
-    <div class="sidebar-inst">University of Toronto</div>
-    <nav>
-      <ul>
-        <li><a href="#" class="active" data-section="about"><span class="icon">١</span> About</a></li>
-        <li><a href="#" data-section="cv"><span class="icon">٢</span> CV</a></li>
-        <li><a href="#" data-section="publications"><span class="icon">٣</span> Publications</a></li>
-        <li><a href="#" data-section="teaching"><span class="icon">٤</span> Teaching</a></li>
-        <li><a href="#" data-section="contact"><span class="icon">٥</span> Contact</a></li>
-      </ul>
-    </nav>
-    <div class="sidebar-footer">
-      <div class="sidebar-links">
-        <a href="https://scholar.google.com/citations?user=ZZDK5lgAAAAJ&hl=en&oi=ao" target="_blank">Google Scholar</a> <!-- "_blank" to open in new tab -->
-		<a href="https://rauscher-group.physics.utoronto.ca/" target="_blank">Rauscher Group</a> <!-- "_blank" to open in new tab -->
+<header class="top">
+  <div class="name">Your Name</div>
+  <nav class="nav">
+    <a href="#research">Research</a>
+    <a href="#publications">Publications</a>
+    <a href="#teaching">Teaching</a>
+    <a href="#cv">CV</a>
+  </nav>
+</header>
+
+<div class="intro">
+  <div class="intro-bio">
+    <p>PhD candidate in computational protein biophysics at [University], advised by [Advisor]. I develop and apply computational methods to study protein structure, dynamics, and function — with a focus on [e.g. intrinsically disordered regions / membrane proteins / enzyme mechanisms].</p>
+    <p>My work combines molecular dynamics simulation, free energy calculations, and [e.g. machine learning / coarse-grained modeling] to address questions in [e.g. protein folding / ligand binding / allostery]. I am broadly interested in how physical principles govern biological machines at the molecular scale.</p>
+  </div>
+
+  <div class="intro-meta">
+    <div class="meta-block">
+      <span class="meta-label">Affiliation</span>
+      [Your University]<br>
+      Dept. of [Biochemistry / Chemistry / Biophysics]<br>
+      [City, Country]
+    </div>
+    <div class="meta-block">
+      <span class="meta-label">Contact</span>
+      <a href="mailto:you@university.edu">you@university.edu</a>
+    </div>
+    <div class="meta-block">
+      <span class="meta-label">Links</span>
+      <div class="ext-links">
+        <a href="#">Google Scholar</a>
+        <a href="#">GitHub</a>
+        <a href="#">ORCID</a>
+        <a href="#">Twitter / X</a>
       </div>
     </div>
-  </aside>
-
-  <main>
-
-    <!-- ABOUT -->
-    <section id="about" class="active">
-      <div class="section-label">About</div>
-      <div class="about-intro">
-        <h1>Yousuf O. Ramahi</h1>
-		    <h1 class="ar">يوسف ع. الرمحي</h1>
-        <p><strong>PhD student</strong> in the Rauscher Group in the Department of Chemistry at the University of Toronto. Biographical sketch...</p>
-        <p>Previously I completed my history sketch...</p>
-        <div class="interests">
-          <span class="tag">Protein allostery</span>
-          <span class="tag">Molecular dynamics simulations</span>
-		  <span class="tag">Conformational sampling</span>
-		  <span class="tag">Path sampling</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- CV -->
-    <section id="cv">
-      <div class="section-label">Curriculum Vitae</div>
-      <a href="cv.pdf" class="cv-download">↓ Download PDF</a>
-      <h2>Education</h2>
-      <div class="cv-entry">
-        <div class="cv-year">2024–Present</div>
-        <div>
-          <div class="cv-title">PhD in Chemistry</div>
-          <div class="cv-sub">University of Toronto</div>
-          <div class="cv-sub"><b>Supervisor:</b> Prof. Sarah Rauscher</div>
-        </div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-year">2022–2024</div>
-        <div>
-          <div class="cv-title">MSc Chemistry</div>
-          <div class="cv-sub">University of Toronto</div>
-          <div class="cv-sub"><b>Thesis:</b> A Binary-Switch Model of the Adenosine A<sub>2A</sub> G Protein-Coupled Receptor: A Molecular Dynamics Study</div>
-          <div class="cv-sub"><b>Supervisor:</b> Prof. Sarah Rauscher</div>
-        </div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-year">2017–2021</div>
-        <div>
-          <div class="cv-title">BSc (Hons) Life Physics - Biophysics Specialization</div>
-          <div class="cv-sub">University of Waterloo</div>
-          <div class="cv-sub"><b>Thesis:</b> The Effect of Oxidized Lipids on Amyloid-&beta; Toxicity: A Black Lipid Membrane Study</div>
-          <div class="cv-sub"><b>Supervisor:</b> Prof. Zoya Leonenko</div>
-        </div>
-      </div>
-      <h2>Positions</h2>
-      <div class="cv-entry">
-        <div class="cv-year">Year</div>
-        <div>
-          <div class="cv-title">??? Researcher</div>
-          <div class="cv-sub">??? Group, University of Toronto</div>
-        </div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-year">Uear?</div>
-        <div>
-          <div class="cv-title">Position?</div>
-          <div class="cv-sub">Where?</div>
-        </div>
-      </div>
-      <h2>Awards &amp; Funding</h2>
-      <div class="cv-entry">
-        <div class="cv-year">Year?</div>
-        <div>
-          <div class="cv-title">Scholarship??</div>
-          <div class="cv-sub"> Source of scholarship? </div>
-        </div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-year">Year?</div>
-        <div>
-          <div class="cv-title">Another one?</div>
-          <div class="cv-sub">Source of scholarship?</div>
-        </div>
-      </div>
-      <h2>Skills</h2>
-      <div class="cv-entry">
-        <div class="cv-year">Methods</div>
-        <div><div class="cv-sub"> Classical Molecular Dynamics Simulations (GROMACS) </div></div>
-      </div>
-      <div class="cv-entry">
-        <div class="cv-year">Software</div>
-        <div><div class="cv-sub"> GROMACS &bullet; Python &bullet; ChimeraX &bullet; PyMOL &bullet; VMD &bullet; Bash Scripting &bullet; LaTeX</div></div>
-      </div>
-    </section>
-
-
-    <!-- PUBLICATIONS -->
-    <section id="publications">
-      <div class="section-label">Publications</div>
-      <h1>Selected publications</h1>
-      <p>* equal contribution. Full list on <a href="https://scholar.google.com/citations?user=ZZDK5lgAAAAJ&hl=en&oi=ao" target="_blank" style="color:var(--accent)">Google Scholar</a>.</p>
-
-      <!--
-        HOW TO ADD A FIGURE:
-        1. Save your image in a "figures/" folder next to index.html, e.g. figures/trpv1.jpg
-        2. Replace the <div class="pub-figure-placeholder"> block inside .pub-figure with:
-              <img src="figures/trpv1.jpg" alt="TRPV1 cryo-EM figure"/>
-        3. Add class "has-image" to the .pub-figure div so the border changes to solid.
-        Clicking the thumbnail opens a lightbox with the full image.
-      -->
-
-      <div class="pub-entry">
-        <div class="pub-body">
-          <div class="pub-title">Lorem ipsum</div>
-          <div class="pub-authors"><strong>Your name</strong>, other names</div>
-          <div class="pub-journal">Journal Name, 20XX</div>
-          <div class="pub-links">
-            <a class="pub-link" href="#">DOI</a>
-            <a class="pub-link" href="#">PDF</a>
-            <a class="pub-link" href="#">arXiv link??</a>
-          </div>
-        </div>
-        <!-- ADD FIGURE: replace placeholder with <img src="figures/trpv1.jpg" alt="..."/> and add class has-image -->
-        <div class="pub-figure" data-caption="caption_identifier">
-          <div class="pub-figure-placeholder">
-            <span class="icon">🔬</span>Add figure
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-entry">
-        <div class="pub-body">
-          <div class="pub-title">Lorem ipsum</div>
-          <div class="pub-authors"><strong>Your name</strong>, other names</div>
-          <div class="pub-journal">Journal Name, 20XX</div>
-          <div class="pub-links">
-            <a class="pub-link" href="#">DOI</a>
-            <a class="pub-link" href="#">PDF</a>
-          </div>
-        </div>
-        <!-- ADD FIGURE: replace placeholder with <img src="figures/kv12.jpg" alt="..."/> and add class has-image -->
-        <div class="pub-figure" data-caption="Kv1.2 voltage sensor, eLife 2023">
-          <div class="pub-figure-placeholder">
-            <span class="icon">🔬</span>Add figure
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-entry">
-        <div class="pub-body">
-          <div class="pub-title">Lorem ipsum</div>
-          <div class="pub-authors"><strong>Your name</strong>, other names</div>
-          <div class="pub-journal">Journal Name, 20XX</div>
-          <div class="pub-links">
-            <a class="pub-link" href="#">DOI</a>
-            <a class="pub-link" href="#">PDF</a>
-          </div>
-        </div>
-        <!-- ADD FIGURE: replace placeholder with <img src="figures/katp.jpg" alt="..."/> and add class has-image -->
-        <div class="pub-figure" data-caption="KATP inhibited state, PNAS 2022">
-          <div class="pub-figure-placeholder">
-            <span class="icon">🔬</span>Add figure
-          </div>
-        </div>
-      </div>
-
-      <div class="pub-entry">
-        <div class="pub-body">
-          <div class="pub-title">Lorem ipsum</div>
-          <div class="pub-authors"><strong>Your name</strong>, other names</div>
-          <div class="pub-journal">Journal Name, 20XX</div>
-          <div class="pub-links">
-            <a class="pub-link" href="#">DOI</a>
-            <a class="pub-link" href="#">PDF</a>
-            <a class="pub-link" href="#">GitHub</a>
-          </div>
-        </div>
-        <!-- ADD FIGURE: replace placeholder with <img src="figures/2dclass.jpg" alt="..."/> and add class has-image -->
-        <div class="pub-figure" data-caption="2D class averages, J Struct Biol 2021">
-          <div class="pub-figure-placeholder">
-            <span class="icon">🔬</span>Add figure
-          </div>
-        </div>
-      </div>
-    </section> 
-
-    <!-- TEACHING -->
-    <section id="teaching">
-      <div class="section-label">Teaching</div>
-      <h1>Teaching &amp; mentorship</h1>
-      <p>I am committed to xxx... have a small blurb here...</p>
-      <h2>Courses</h2>
-      <div class="teach-entry">
-        <div class="teach-title">BCH320 — Protein Structure &amp; Function</div>
-        <div class="teach-meta">Teaching Assistant · University of Toronto</div>
-		<div class="teach-date">Fall 2024, Fall 2025, Fall 2026</div>
-        <p style="margin-top:.5rem">Led weekly tutorials and graded problem sets for a 120-student undergraduate course covering protein folding, structure determination, and enzymology.</p>
-      </div>
-      <div class="teach-entry">
-        <div class="teach-title">BCH1000 — Graduate Methods in Structural Biology</div>
-        <div class="teach-meta">Guest Lecturer · University of Toronto · 2024</div>
-        <p style="margin-top:.5rem">Two guest lectures on cryo-EM sample preparation and data processing for first-year graduate students.</p>
-      </div>
-
-      <h2>Mentorship</h2>
-      <div class="teach-entry">
-        <div class="teach-title">Undergraduate Supervision</div>
-        <div class="teach-meta">2023–present</div>
-        <p style="margin-top:.5rem">Day-to-day supervision of ???...</p>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-      <div class="section-label">Contact</div>
-      <h1>Get in touch</h1>
-      <p></p>
-      <div class="contact-grid">
-        <a href="mailto:yousuf.ramahi@mail.utoronto.ca" class="contact-card">
-          <span class="c-icon">✉</span>
-          <div><div class="c-label">Email</div><div class="c-val">yousuf.ramahi@mail.utoronto.ca</div></div>
-        </a>
-        <a href="https://scholar.google.com/citations?user=ZZDK5lgAAAAJ&hl=en&oi=ao" class="contact-card" target="_blank">
-          <span class="c-icon">&#x2733;</span>
-          <div><div class="c-label">Google Scholar</div><div class="c-val">Yousuf O. Ramahi</div></div>
-        </a>
-      </div>
-      <div class="map-box">
-        <strong>Rauscher Group · Department of Chemistry · Department of Chemical &amp; Physical Sciences</strong>
-        University of Toronto · University of Toronto Mississauga
-      </div>
-    </section>
-
-  </main>
-</div>
-
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox">
-  <div class="lightbox-inner">
-    <div class="lightbox-close" id="lb-close">✕</div>
-    <img id="lb-img" src="" alt=""/>
-    <div class="lightbox-caption" id="lb-caption"></div>
   </div>
 </div>
 
-<script>
-  // Nav
-  const navLinks = document.querySelectorAll('nav a[data-section]');
-  const sections = document.querySelectorAll('section');
-  function show(id) {
-    sections.forEach(s => s.classList.toggle('active', s.id === id));
-    navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-  navLinks.forEach(a => a.addEventListener('click', e => { e.preventDefault(); show(a.dataset.section); }));
+<div class="section" id="research">
+  <div class="section-header">Research</div>
 
-  // Lightbox
-  const lb      = document.getElementById('lightbox');
-  const lbImg   = document.getElementById('lb-img');
-  const lbCap   = document.getElementById('lb-caption');
-  const lbClose = document.getElementById('lb-close');
+  <div class="item">
+    <div class="item-year">—</div>
+    <div>
+      Protein conformational dynamics
+      <span class="item-sub">MD simulation, enhanced sampling, free energy perturbation</span>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-year">—</div>
+    <div>
+      [Second theme — e.g. Protein–ligand binding]
+      <span class="item-sub">[Methods or systems — e.g. alchemical free energy, FEP+]</span>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-year">—</div>
+    <div>
+      [Third theme — e.g. ML-guided force field development]
+      <span class="item-sub">[e.g. neural network potentials, transferability across systems]</span>
+    </div>
+  </div>
+</div>
 
-  document.querySelectorAll('.pub-figure').forEach(fig => {
-    fig.addEventListener('click', () => {
-      const img = fig.querySelector('img');
-      if (!img) return; // placeholder — no image yet
-      lbImg.src = img.src;
-      lbCap.textContent = fig.dataset.caption || '';
-      lb.classList.add('open');
-    });
-  });
+<div class="section" id="publications">
+  <div class="section-header">Publications &amp; Preprints</div>
 
-  function closeLb() { lb.classList.remove('open'); }
-  lbClose.addEventListener('click', closeLb);
-  lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
-</script>
+  <div class="pub">
+    <div class="pub-year">2024</div>
+    <div>
+      <span class="pub-title"><a href="#">Title of Your Most Recent Paper</a></span>
+      <span class="pub-authors">Your Name, Co-author A, Co-author B, Advisor</span>
+      <span class="pub-venue">J. Chem. Theory Comput. · 2024</span>
+      <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a><a href="#">Code</a></div>
+    </div>
+  </div>
 
-<div class="border-right-1"></div>
-<div class="border-right-2"></div>
-<div class="border-right-3"></div>
+  <div class="pub">
+    <div class="pub-year">2024</div>
+    <div>
+      <span class="pub-title"><a href="#">Preprint or Second Paper Title</a></span>
+      <span class="pub-authors">Your Name, Co-author C, Advisor</span>
+      <span class="pub-venue">bioRxiv preprint · 2024</span>
+      <div class="pub-links"><a href="#">PDF</a><a href="#">bioRxiv</a><a href="#">Data</a></div>
+    </div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-year">2023</div>
+    <div>
+      <span class="pub-title"><a href="#">Earlier Publication Title</a></span>
+      <span class="pub-authors">Co-author, Your Name, Advisor</span>
+      <span class="pub-venue">Biophys. J. · vol. XX · pp. YYY–ZZZ · 2023</span>
+      <div class="pub-links"><a href="#">PDF</a><a href="#">DOI</a></div>
+    </div>
+  </div>
+
+  <div class="pub">
+    <div class="pub-year">2022</div>
+    <div>
+      <span class="pub-title">Undergraduate / Pre-PhD Work Title</span>
+      <span class="pub-authors">Your Name, Undergrad Advisor</span>
+      <span class="pub-venue">[Journal] · 2022</span>
+      <div class="pub-links"><a href="#">PDF</a></div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-header">Talks &amp; Presentations</div>
+
+  <div class="item">
+    <div class="item-year">2024</div>
+    <div>
+      [Talk or poster title]
+      <span class="item-sub">Biophysical Society Annual Meeting · Philadelphia</span>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-year">2024</div>
+    <div>
+      [Seminar or symposium talk]
+      <span class="item-sub">[Department Seminar], [University]</span>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-year">2023</div>
+    <div>
+      [Poster presentation]
+      <span class="item-sub">Gordon Research Conference — Computational Aspects of Biomolecular NMR</span>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="teaching">
+  <div class="section-header">Teaching &amp; Service</div>
+
+  <div class="item">
+    <div class="item-year">2024</div>
+    <div>
+      Teaching Assistant — [Physical Biochemistry / Structural Biology / Biophysics]
+      <span class="item-sub">[Your University], [Fall / Spring] semester</span>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-year">2023</div>
+    <div>
+      Reviewer — [J. Chem. Theory Comput. / PLOS Comp. Bio. / Proteins]
+      <span class="item-sub">ad hoc peer reviewer</span>
+    </div>
+  </div>
+  <div class="item">
+    <div class="item-year">2023</div>
+    <div>
+      [Outreach / mentoring / committee role]
+      <span class="item-sub">[e.g. Graduate Student Association, undergraduate research mentor]</span>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="cv">
+  <span>Updated April 2026</span>
+  <a href="#">Download CV ↓</a>
+</footer>
 
 </body>
 </html>
