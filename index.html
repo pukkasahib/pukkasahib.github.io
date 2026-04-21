@@ -15,6 +15,8 @@
     --paper: #f6f4ef;
     --muted: #9a9690;
     --rule:  #d6d3cc;
+    --uoft-yellow: #f1c500;
+
   }
 
   @font-face {
@@ -89,13 +91,13 @@
     gap: 10px
   }
 
-  .name { font-weight: 400; font-size: 30px; font-family: reforma;}
+  .name { font-weight: 400; font-size: 30px; font-family: reforma; color: var(--ink)}
   .name-ar {font-family: uthmanic; font-size: 30px; direction: ltr; color: var(--ink);}
 
 
   .nav { display: flex; gap: 22px; font-size: 12px; }
   .nav a { color: var(--muted); border-bottom: none; }
-  .nav a:hover { color: var(--ink); }
+  .nav a:hover { color: var(--uoft-yellow); }
 
   .intro {
     display: grid;
@@ -212,10 +214,10 @@
   <div class="intro-meta">
     <div class="meta-block">
       <span class="meta-label">Affiliation</span>
-      University of Toronto<br>
-      University of Toronto, Mississauga<br>
-      Dept. of Chemistry<br>
-      Dept. of Chemical &amp; Physical Sciences<br>
+      University of Toronto¹<br>
+      University of Toronto, Mississauga²<br>
+      Dept. of Chemistry¹<br>
+      Dept. of Chemical &amp; Physical Sciences²<br>
       Toronto, Canada
     </div>
     <div class="meta-block">
@@ -225,7 +227,7 @@
     <div class="meta-block">
       <span class="meta-label">Links</span>
       <div class="ext-links">
-        <a href="#">Google Scholar</a>
+        <a href="https://scholar.google.com/citations?user=ZZDK5lgAAAAJ&hl=en&inst=315209982802967212" target="_blank">Google Scholar</a>
       </div>
     </div>
   </div>
@@ -257,7 +259,11 @@
   </div>
 </div>
 
-<div class="section" id="publications">
+
+
+<!-- <div class="section" id="publications">
+
+
   <div class="section-header">Publications &amp; Preprints</div>
 
   <div class="pub">
@@ -299,7 +305,7 @@
       <div class="pub-links"><a href="#">PDF</a></div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="section">
   <div class="section-header">Talks &amp; Presentations</div>
