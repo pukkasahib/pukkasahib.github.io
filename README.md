@@ -1,4 +1,4 @@
-### Yousuf O. Ramahi
+## Yousuf O. Ramahi
 ---
 
 Personal website
