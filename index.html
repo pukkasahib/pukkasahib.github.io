@@ -99,7 +99,7 @@
     align-items: baseline;
     margin-bottom: 60px;
     padding-bottom: 14px;
-    border-bottom: 2px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
   }
 
   .name-group {
@@ -111,7 +111,6 @@
 
   .name { font-weight: 400; font-size: 30px; font-family: reforma; color: var(--ink)}
   .name-ar {font-family: uthmanic; font-size: 30px; direction: ltr; color: var(--ink);}
-
 
   .nav { display: flex; gap: 22px; font-size: 12px; }
   .nav a { color: var(--muted); border-bottom: none; }
@@ -131,7 +130,6 @@
   .meta-block { margin-bottom: 1.5em; }
   .meta-label { font-style: italic; color: var(--muted); font-size: 12px; display: block; margin-bottom: 4px; font-family: reforma;}
 
-
   a { color: var(--ink); text-decoration: none; border-bottom: 0.5px solid var(--ink); transition: opacity 0.15s; }
   a:hover { opacity: 0.4; }
 
@@ -149,6 +147,15 @@
     margin-bottom: 12px;
     padding-bottom: 8px;
     border-bottom: 0.5px solid var(--rule);
+  }
+
+  .subsection-header {
+    font-size: 15px;
+    font-style: italic;
+    font-family: reforma;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
   }
 
   .pub {
@@ -178,7 +185,7 @@
 
   .item {
     display: grid;
-    grid-template-columns: 52px 1fr;
+    grid-template-columns: 75px 1fr;
     gap: 0 20px;
     padding: 4px 0;
     font-size: 12.5px;
@@ -205,6 +212,37 @@
     .top { flex-direction: column; gap: 14px; }
     .pub, .item { grid-template-columns: 44px 1fr; gap: 0 12px; }
   }
+
+  .writings-layout { display: grid; grid-template-columns: 220px 1fr; gap: 0 52px; min-height: 70vh; }
+
+  .writings-list { border-right: 0.5px solid var(--rule); padding-right: 32px; }
+  .writings-list-header { font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 0.5px solid var(--rule); }
+
+  .writing-item { padding: 10px 0; border-bottom: 0.5px solid transparent; cursor: pointer; transition: border-color 0.15s; }
+  .writing-item:hover { border-bottom-color: var(--rule); }
+  .writing-item.selected .writing-title { color: var(--ink); font-weight: 400; }
+  .writing-item.selected { border-bottom-color: var(--rule); }
+
+  .writing-title { font-family:reforma; font-style: italic; 12.5px; color: var(--muted); line-height: 1.4; display: block; transition: color 0.15s; }
+  .writing-title:hover { color: var(--ink); }
+  .writing-meta { font-size: 11px; color: var(--muted); margin-top: 3px; font-style: italic; }
+  .writing-year { font-size: 10.5px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: 2px; }
+
+  .writing-content { display: none; }
+  .writing-content.visible { display: block; }
+
+  .writing-content-title { font-size: 22px; font-family: reforma, serif; font-weight: 400; line-height: 1.3; margin-bottom: 6px; color: var(--ink); }
+  .writing-content-byline { font-size: 11.5px; color: var(--muted); margin-bottom: 36px; padding-bottom: 18px; border-bottom: 0.5px solid var(--rule); }
+  .writing-content-body { font-size: 14px; line-height: 1.9; color: var(--ink); max-width: 75%; font-weight: 300; }
+  .writing-content-body p + p { margin-top: 1.3em; }
+
+  @media (max-width: 640px) {
+    .writings-layout { grid-template-columns: 1fr; }
+    .writings-list { border-right: none; border-bottom: 0.5px solid var(--rule); padding-right: 0; padding-bottom: 24px; margin-bottom: 32px; }
+    .writing-content-body { max-width: 100%; }
+  }
+
+
 </style>
 </head>
 <body>
@@ -216,6 +254,7 @@
   </div>
 
   <nav class="nav">
+    <a href="#writings">Writings</a>
     <a href="#research">Research</a>
     <a href="#teaching">Teaching</a>
     <a href="#service">Service and Outreach</a>
@@ -232,10 +271,10 @@
   <div class="intro-meta">
     <div class="meta-block">
       <span class="meta-label">Affiliation</span>
-      University of Toronto¹<br>
-      University of Toronto, Mississauga²<br>
       Dept. of Chemistry¹<br>
       Dept. of Chemical &amp; Physical Sciences²<br>
+      University of Toronto¹<br>
+      University of Toronto, Mississauga²<br>
       Toronto, Canada
     </div>
     <div class="meta-block">
@@ -326,7 +365,7 @@
 </div> -->
 
 <div class="section">
-  <div class="section-header">Talks &amp; Presentations</div>
+  <div class="section-header">Selected Talks &amp; Presentations</div>
 
   <div class="item">
     <div class="item-year">2024</div>
@@ -346,45 +385,162 @@
     <div class="item-year">2023</div>
     <div>
       [Poster presentation]
-      <span class="item-sub">Gordon Research Conference — Computational Aspects of Biomolecular NMR</span>
+      <span class="item-sub">??? Research Conference — Computational Aspects of Biomolecular NMR</span>
     </div>
   </div>
 </div>
 
 <div class="section" id="teaching">
-  <div class="section-header">Teaching</div>
+  <div class="section-header">Teaching Activities</div>
+
+  <div class="subsection-header"> Course Instructor </div>
 
   <div class="item">
-    <div class="item-year">2024</div>
+    <div class="item-year">2025</div>
     <div>
-      Teaching Assistant — [Physical Biochemistry / Structural Biology / Biophysics]
-      <span class="item-sub">[Your University], [Fall / Spring] semester</span>
+      JCP265 (Introduction to Scientific Computing) [<a href="https://utm.calendar.utoronto.ca/course/jcp265h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Fall term</span>
     </div>
   </div>
   <div class="item">
+    <div class="item-year">2024</div>
+    <div>
+      JCP265 (Introduction to Scientific Computing) [<a href="https://utm.calendar.utoronto.ca/course/jcp265h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Fall term</span>
+    </div>
+  </div>
+
+  <div class="subsection-header"> Workshop Instructor </div>
+
+  <div class="item">
+    <div class="item-year">2025</div>
+    <div>
+      Using a "Computational Microscope" to Study Protein Structure and Dynamics [<a href="https://www.utm.utoronto.ca/dean/inspire", target="_blank"> link </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, June</span>
+    </div>
+  </div>
+    <div class="item">
+    <div class="item-year">2024</div>
+    <div>
+      Using a "Computational Microscope" to Study Protein Structure and Dynamics [<a href="https://www.utm.utoronto.ca/dean/inspire", target="_blank"> link </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, June</span>
+    </div>
+  </div>
+
+  <div class="subsection-header"> Teaching Assistant </div>
+
+  <div class="item">
+    <div class="item-year">2026</div>
+    <div>
+      PHY100 (What's Physics Got to Do With It?) [<a href="https://utm.calendar.utoronto.ca/course/phy100h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Winter term</span>
+    </div>
+  </div>
+    <div class="item">
+    <div class="item-year">2025</div>
+    <div>
+      PHY426 (Computational Modeling in Physics) [<a href="https://utm.calendar.utoronto.ca/course/phy426h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Winter term</span>
+    </div>
+  </div>
+      <div class="item">
+    <div class="item-year">2024</div>
+    <div>
+      PHY137 (Physics for Life and Environmental Sciences II) [<a href="https://utm.calendar.utoronto.ca/course/phy137h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Winter term</span>
+    </div>
+  </div>
+      <div class="item">
     <div class="item-year">2023</div>
     <div>
-      Reviewer — [J. Chem. Theory Comput. / PLOS Comp. Bio. / Proteins]
-      <span class="item-sub">ad hoc peer reviewer</span>
+      PHY146 (Principles of Physics I) [<a href="https://utm.calendar.utoronto.ca/course/phy146h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Fall term</span>
+    </div>
+  </div>
+      <div class="item">
+    <div class="item-year">2023</div>
+    <div>
+      CHM120 (Chemical Principles II) [<a href="https://utm.calendar.utoronto.ca/course/chm120h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Winter term</span>
+    </div>
+  </div>
+      <div class="item">
+    <div class="item-year">2022</div>
+    <div>
+      CHM110 (Chemical Principles I) [<a href="https://utm.calendar.utoronto.ca/course/chm110h5", target="_blank"> course calendar </a>]
+      <span class="item-sub"> University of Toronto, Mississauga, Fall term</span>
     </div>
   </div>
 </div>
 
 <div class="section" id="service">
-  <div class="section-header">Service</div>
+  <div class="section-header">Co-curriculars, Service, &amp; Outreach</div>
 
   <div class="item">
-    <div class="item-year">year</div>
+    <div class="item-year">2023 - 2026</div>
     <div>
-      Teaching Assistant — [Physical Biochemistry / Structural Biology / Biophysics]
-      <span class="item-sub">[Your University], [Fall / Spring] semester</span>
+      Chemical Biophysics Symposium [<a href="https://www.chembiophys.ca/", target="_blank"> link </a>]
+      <br> Chair
+      <br> Vice-Chair
+      <br> Program Lead
+      <span class="item-sub"> University of Toronto</span>
     </div>
   </div>
   <div class="item">
-    <div class="item-year">2023</div>
+    <div class="item-year">2023 - 2026</div>
     <div>
-      XXX — [J. Chem. Theory Comput. / PLOS Comp. Bio. / Proteins]
-      <span class="item-sub">description</span>
+      Biophysical Society of Canada Trainee Executive [<a href="https://biophysicalsociety.ca/about/trainee/", target="_blank"> link </a>]
+      <br> Fundraising Lead 
+      <br> Member-at-Large
+      <span class="item-sub">Biophysical Society of Canada</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- WRITINGS (must add BOTH an entry to the 'writings list' and an entry to the 'writing reader') -->
+
+<div class="section" id="writings">
+  <div class="section-header">Writings</div>
+  <div class="writings-layout">
+
+    <div class="writings-list">
+      <div class="writings-list-header"> These pieces are my own and represent my own views </div>
+      <div class="writings-list-header">Archive</div>
+
+      <div class="writing-item selected" onclick="selectWriting(this, 'w1')">
+        <span class="writing-title">Title of first piece</span>
+        <div class="writing-year">2025</div>
+        <div class="writing-meta">Essay</div>
+      </div>
+
+      <div class="writing-item" onclick="selectWriting(this, 'w2')">
+        <span class="writing-title">Title of second piece</span>
+        <div class="writing-year">2024</div>
+        <div class="writing-meta">Notes</div>
+      </div>
+
+    </div>
+
+    <div class="writing-reader">
+
+      <div id="w1" class="writing-content visible"> <!-- first entry should be 'visible'-->
+        <div class="writing-content-title">Title of first piece</div>
+        <div class="writing-content-byline">2025 · Essay</div>
+        <div class="writing-content-body">
+          <p>Your text here.</p>
+          <p>Second paragraph here.</p>
+        </div>
+      </div>
+
+      <div id="w2" class="writing-content">
+        <div class="writing-content-title">Title of second piece</div>
+        <div class="writing-content-byline">2024 · Notes</div>
+        <div class="writing-content-body">
+          <p>Your text here.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -393,6 +549,16 @@
   <span>Updated April 2026</span>
   <a href="#">Download CV ↓</a>
 </footer>
+
+<!-- Script for updating the writing piece on display when title is clicked-->
+<script>
+  function selectWriting(el, id) {
+    document.querySelectorAll('.writing-item').forEach(i => i.classList.remove('selected'));
+    document.querySelectorAll('.writing-content').forEach(c => c.classList.remove('visible'));
+    el.classList.add('selected');
+    document.getElementById(id).classList.add('visible');
+  }
+</script>
 
 </body>
 </html>
